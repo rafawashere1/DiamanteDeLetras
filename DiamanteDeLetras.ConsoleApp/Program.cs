@@ -29,11 +29,10 @@
                         tamanhoDiamanteSuperior = j;
                         letraDoMeio = j;
                     }
+                    
                     tamanhoDiamante = tamanhoDiamanteSuperior * 2 + 1;
 
                 }
-
-                else { }
             }
 
             int quantidadeEspacosEmBrancoSuperior = (tamanhoDiamante - 1) / 2;
@@ -56,10 +55,12 @@
                 if (linha == 0)
                 {
                     Console.Write(alfabetoSeparado[letraSuperior]);
+
                     for (int j = 1; j < quantidadeEspacosEmBrancoMeio; j++)
                     {
                         Console.Write(" ");
                     }
+
                     letraSuperior++;
                     Console.WriteLine();
                 }
@@ -67,21 +68,19 @@
                 // Seguintes linhas até o meio
                 else if (linha > 0 && linha < alfabetoSeparado[letraDoMeio])
                 {
-                    for (int i = 0; i < tamanhoDiamante - 1; i++)
+
+                    Console.Write(alfabetoSeparado[letraSuperior]);
+
+                    for (int j = 1; j < quantidadeEspacosEmBrancoMeio; j++)
                     {
-                        if (i == 0)
-                        {
-                            Console.Write(alfabetoSeparado[letraSuperior]);
-                            for (int j = 1; j < quantidadeEspacosEmBrancoMeio; j++)
-                            {
-                                Console.Write(" ");
-                            }
-                            letraSuperior++;
-                            Console.WriteLine(alfabetoSeparado[letraSuperior - 1]);
-                        }
+                        Console.Write(" ");
                     }
+
+                    letraSuperior++;
+                    Console.WriteLine(alfabetoSeparado[letraSuperior - 1]);
+
                 }
-                
+
                 // Linha do meio
                 else if (linha == alfabetoSeparado[letraDoMeio])
                 {
@@ -137,24 +136,22 @@
                 // Seguintes linhas
                 else if (linha > 0)
                 {
-                    for (int i = 0; i < tamanhoDiamante; i++)
+
+                    Console.Write(alfabetoSeparado[letraInferior]);
+                    
+                    for (int j = 0; j < quantidadeEspacosEmBrancoMeio; j++)
                     {
-                        if (i == 0)
-                        {
-                            Console.Write(alfabetoSeparado[letraInferior]);
-                            for (int j = 0; j < quantidadeEspacosEmBrancoMeio; j++)
-                            {
-                                Console.Write(" ");
-                            }
-                            letraInferior--;
-                            if (letraInferior >= 0)
-                            {
-                                Console.WriteLine(alfabetoSeparado[letraInferior + 1]);
-                            }
-                            break;
-                        }
+                        Console.Write(" ");
+                    }
+                    
+                    letraInferior--;
+                    
+                    if (letraInferior >= 0)
+                    {
+                        Console.WriteLine(alfabetoSeparado[letraInferior + 1]);
                     }
                 }
+                
                 Console.WriteLine();
                 quantidadeEspacosEmBrancoInferior++;
                 quantidadeEspacosEmBrancoMeio -= 2;
