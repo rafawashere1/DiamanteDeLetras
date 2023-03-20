@@ -32,19 +32,19 @@
                     tamanhoDiamante = tamanhoDiamanteSuperior * 2 + 1;
 
                 }
-                
+
                 else { }
             }
 
             int quantidadeEspacosEmBrancoSuperior = (tamanhoDiamante - 1) / 2;
             int quantidadeEspacosEmBrancoMeio = 0;
-            int quantidadeEspacosEmBrancoInferior = 0;
+            int quantidadeEspacosEmBrancoInferior = 1;
             int quantidadeDeLinhas = (tamanhoDiamante - 1) / 2;
             int letraSuperior = 0;
             int letraInferior = letraDoMeio - 1;
 
             // Parte superior do diamante
-            for (int linha = 0; linha < quantidadeDeLinhas; linha++)
+            for (int linha = 0; linha <= quantidadeDeLinhas; linha++)
             {
                 // Incrementador de espaços em branco à esquerda
                 for (int i = 0; i < quantidadeEspacosEmBrancoSuperior; i++)
@@ -64,8 +64,8 @@
                     Console.WriteLine();
                 }
 
-                // Seguintes linhas até o centro
-                else if (linha > 0)
+                // Seguintes linhas até o meio
+                else if (linha > 0 && linha < alfabetoSeparado[letraDoMeio])
                 {
                     for (int i = 0; i < tamanhoDiamante - 1; i++)
                     {
@@ -78,9 +78,24 @@
                             }
                             letraSuperior++;
                             Console.WriteLine(alfabetoSeparado[letraSuperior - 1]);
-
                         }
                     }
+                }
+                
+                // Linha do meio
+                else if (linha == alfabetoSeparado[letraDoMeio])
+                {
+                    quantidadeEspacosEmBrancoMeio -= 3;
+
+                    Console.Write(alfabetoSeparado[letraDoMeio]);
+
+                    for (int i = 0; i < tamanhoDiamante - 2; i++)
+                    {
+                        Console.Write(" ");
+                    }
+
+                    Console.WriteLine(alfabetoSeparado[letraDoMeio]);
+                    Console.WriteLine();
                 }
                 Console.WriteLine();
                 quantidadeEspacosEmBrancoSuperior--;
@@ -88,37 +103,13 @@
 
             }
 
-            // Linha do meio (Letra de input)
-            for (int i = 0; i <= tamanhoDiamante; i++)
-            {
-                if (i == 0)
-                {
-                    Console.Write(alfabetoSeparado[letraDoMeio]);
-
-                }
-
-                else if (i < tamanhoDiamante - 1)
-                {
-                    Console.Write(" ");
-                }
-
-                else if (i == tamanhoDiamante)
-                {
-                    Console.WriteLine(alfabetoSeparado[letraDoMeio]);
-                }
-                quantidadeEspacosEmBrancoInferior = i - 4;
-            }
-            
-            Console.WriteLine();
-
-            quantidadeEspacosEmBrancoSuperior = 1;
-            quantidadeEspacosEmBrancoMeio = quantidadeEspacosEmBrancoInferior;
+            quantidadeEspacosEmBrancoMeio -= 5;
 
             // Parte inferior do diamante
             for (int linha = 0; linha < quantidadeDeLinhas; linha++)
             {
                 // Incrementador de espaços em branco à esquerda
-                for (int i = 0; i < quantidadeEspacosEmBrancoSuperior; i++)
+                for (int i = 0; i < quantidadeEspacosEmBrancoInferior; i++)
                 {
                     Console.Write(" ");
                 }
@@ -126,15 +117,23 @@
                 if (linha == 0)
                 {
                     // Primeira linha após o centro
-                    Console.Write(alfabetoSeparado[letraInferior]);
-                    for (int j = 0; j < quantidadeEspacosEmBrancoMeio; j++)
+                    if (letraInferior == 0)
                     {
-                        Console.Write(" ");
+                        Console.WriteLine('A');
+                        break;
                     }
-                    Console.WriteLine(alfabetoSeparado[letraInferior]);
-                    letraInferior--;
-                }
+                    else
+                    {
+                        Console.Write(alfabetoSeparado[letraInferior]);
 
+                        for (int j = 0; j < quantidadeEspacosEmBrancoMeio; j++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.WriteLine(alfabetoSeparado[letraInferior]);
+                        letraInferior--;
+                    }
+                }
                 // Seguintes linhas
                 else if (linha > 0)
                 {
@@ -157,7 +156,7 @@
                     }
                 }
                 Console.WriteLine();
-                quantidadeEspacosEmBrancoSuperior++;
+                quantidadeEspacosEmBrancoInferior++;
                 quantidadeEspacosEmBrancoMeio -= 2;
             }
         }
